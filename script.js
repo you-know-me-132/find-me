@@ -5,7 +5,7 @@ const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // Replace with your YouTube video ID
-const videoId = '5e4INH1yr9c'; // Nothing's new
+const video = '5e4INH1yr9c';
 
 let player;
 
@@ -14,7 +14,7 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '100', 
     width: '100%', 
-    videoId: videoId,
+    videoId: video,
     playerVars: {
       autoplay: 0, 
       controls: 0, 
