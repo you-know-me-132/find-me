@@ -43,7 +43,7 @@ body {
 }
 
 #player {
-  display: flex;
+  display: none;
 }
 
 #play-pause-button {
