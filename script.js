@@ -4,15 +4,17 @@ tag.src = "https://www.youtube.com/iframe_api";
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+// Replace with your YouTube video ID
+const videoId = '5e4INH1yr9c'; // Nothing's new
+
 let player;
-let cameraActive = false; // Initially, the camera is not active
 
 // This function is called by YouTube when the IFrame Player API is ready
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '100', 
     width: '100%', 
-    videoId: '5e4INH1yr9c', \\ Nothing's new
+    videoId: videoId,
     playerVars: {
       autoplay: 0, 
       controls: 0, 
@@ -85,5 +87,3 @@ function togglePlayPause() {
 
 // Add event listener to the button
 playPauseButton.addEventListener('click', togglePlayPause);
-
-    
