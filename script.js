@@ -4,7 +4,9 @@ tag.src = "https://www.youtube.com/iframe_api";
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-const video = '5e4INH1yr9c';
+// Replace with your YouTube video ID
+const videoId = '5e4INH1yr9c'; // Nothing's new
+
 let player;
 
 // This function is called by YouTube when the IFrame Player API is ready
@@ -12,7 +14,7 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '100', 
     width: '100%', 
-    videoId: '5e4INH1yr9c',
+    videoId: videoId,
     playerVars: {
       autoplay: 0, 
       controls: 0, 
