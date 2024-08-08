@@ -4,7 +4,6 @@ tag.src = "https://www.youtube.com/iframe_api";
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// Replace with your YouTube video ID
 const video = '5e4INH1yr9c';
 
 let player;
