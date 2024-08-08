@@ -44,6 +44,8 @@ body {
 
 #player {
   display: none;
+  height: 0;
+  width: 0;
 }
 
 #play-pause-button {
