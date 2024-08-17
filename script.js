@@ -1,43 +1,11 @@
-// Load the IFrame Player API code asynchronously.
-const tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-const firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-const videoId = '5e4INH1yr9c';
-
-let player;
-
-// This function is called by YouTube when the IFrame Player API is ready
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '100', 
-    width: '100%', 
-    videoId: videoId,
-    playerVars: {
-      autoplay: 0, 
-      controls: 0, 
-      loop: 1, 
-      showinfo: 0, 
-      rel: 0, 
-    },
-    events: {
-      'onReady': onPlayerReady
-    }
-  });
-}
-
-function onPlayerReady(event) {
-  // You can control the player here if needed
-  // e.g., player.mute();  
-}
-
 // Get the elements to display the information
 const ipAddressElement = document.getElementById('ip-address');
 const locationElement = document.getElementById('location');
 const countryElement = document.getElementById('country');
 const regionElement = document.getElementById('region');
 const ispElement = document.getElementById('isp');
+const player = document.getElementById('player'); 
+const playPauseButton = document.getElementById('play-pause-button');
 
 // Fetch the IP address and location data
 fetch('https://api.ipify.org?format=json')
@@ -86,18 +54,14 @@ fetch('https://api.ipify.org?format=json')
     // Display an error message to the user
   });
 
-// Get the play/pause button
-const playPauseButton = document.getElementById('play-pause-button');
-
-
 // Function to handle button clicks
 function togglePlayPause() {
-  if (player.getPlayerState() === 1) { 
-    player.pauseVideo();
-    playPauseButton.innerHTML = '<span class="material-icons">play_arrow</span>';
-  } else { 
-    player.playVideo();
+  if (player.paused) { 
+    player.play();
     playPauseButton.innerHTML = '<span class="material-icons">pause</span>';
+  } else { 
+    player.pause();
+    playPauseButton.innerHTML = '<span class="material-icons">play_arrow</span>';
   }
 }
 
